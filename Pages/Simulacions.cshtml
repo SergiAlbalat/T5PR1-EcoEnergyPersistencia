@@ -1,0 +1,27 @@
+﻿@page
+@model EcoEnergyRazorProject.Pages.SimulacionsModel
+@{
+	ViewData["Title"] = "Llistat Simulacions";
+}
+<h2>Llistat Simulacions</h2>
+<table class="table">
+    <thead>
+		<th>Tipus</th>
+		<th>Energia</th>
+		<th>Data</th>
+	</thead>
+	<tbody>
+		@if(Model.FileExist){
+			@foreach (var simulacio in Model.LlistaSimulacions)
+			{
+				<tr>@simulacio.GetTipus()</tr>
+				<tr>@simulacio.GetEnergia()</tr>
+				<tr>@simulacio.GetData()</tr>
+			}
+		}else{
+			<th colspan="3">No hi ha simulcions creades</th>
+		}
+		
+	</tbody>
+</table>
+<a asp-page="/Simulacions" class="btn btn-primary">Afegir Simulacions</a>

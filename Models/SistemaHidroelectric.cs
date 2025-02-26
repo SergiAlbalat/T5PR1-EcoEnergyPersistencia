@@ -21,6 +21,18 @@
             ContadorSimulacions++;
         }
         public SistemaHidroelectric() : this(ParametrePerDefecte) { }
+        public SistemaHidroelectric(double cabalAigua, DateTime data)
+        {
+            if (!ComprovarParametre(cabalAigua))
+            {
+                throw new ArgumentOutOfRangeException(ErrorForaRang);
+            }
+            Tipus = "Hidro";
+            CabalAigua = cabalAigua;
+            Energia = CalcularEnergia();
+            Data = data;
+            ContadorSimulacions++;
+        }
         public bool ComprovarParametre(double argument) => argument >= 20;
         public double CalcularEnergia() => Math.Round(CabalAigua * 9.8 * 0.8, 4);
         public void MostrarInformacio()
