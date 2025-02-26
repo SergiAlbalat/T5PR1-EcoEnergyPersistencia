@@ -21,6 +21,18 @@
             ContadorSimulacions++;
         }
         public SistemaSolar() : this(ParametrePerDefecte) { }
+        public SistemaSolar(double horesDeSol, DateTime data)
+        {
+            if (!ComprovarParametre(horesDeSol))
+            {
+                throw new ArgumentOutOfRangeException(ErrorForaRang);
+            }
+            Tipus = "Solar";
+            HoresDeSol = horesDeSol;
+            Energia = CalcularEnergia();
+            Data = data;
+            ContadorSimulacions++;
+        }
         public bool ComprovarParametre(double argument) => argument > 1;
         public double CalcularEnergia() => Math.Round(HoresDeSol * 1.5, 4);
         public void MostrarInformacio()

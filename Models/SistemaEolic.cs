@@ -21,6 +21,18 @@
             ContadorSimulacions++;
         }
         public SistemaEolic() : this(ParametrePerDefecte) { }
+        public SistemaEolic(double velocitatVent, DateTime data)
+        {
+            if (!ComprovarParametre(velocitatVent))
+            {
+                throw new ArgumentOutOfRangeException(ErrorForaRang);
+            }
+            Tipus = "Eolic";
+            VelocitatVent = velocitatVent;
+            Energia = CalcularEnergia();
+            Data = data;
+            ContadorSimulacions++;
+        }
         public bool ComprovarParametre(double argument) => argument > 5;
         public double CalcularEnergia() => Math.Round(Math.Pow(VelocitatVent, 3) * 0.2, 4);
         public void MostrarInformacio()
