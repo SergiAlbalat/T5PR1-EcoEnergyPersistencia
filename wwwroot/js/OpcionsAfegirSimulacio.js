@@ -7,24 +7,24 @@ function mostrarEntrada() {
     console.log("hola")
     switch (tipus.value) {
         case "1":
-            campSolar.classList.remove("amagar")
-            campHidro.classList.add("amagar")
-            campEolic.classList.add("amagar")
+            campSolar.classList.remove("d-sm-none")
+            campHidro.classList.add("d-sm-none")
+            campEolic.classList.add("d-sm-none")
             break
         case "2":
-            campSolar.classList.add("amagar")
-            campHidro.classList.remove("amagar")
-            campEolic.classList.add("amagar")
+            campSolar.classList.add("d-sm-none")
+            campHidro.classList.remove("d-sm-none")
+            campEolic.classList.add("d-sm-none")
             break
         case "3":
-            campSolar.classList.add("amagar")
-            campHidro.classList.add("amagar")
-            campEolic.classList.remove("amagar")
+            campSolar.classList.add("d-sm-none")
+            campHidro.classList.add("d-sm-none")
+            campEolic.classList.remove("d-sm-none")
             break
         case "":
-            campSolar.classList.add("amagar")
-            campHidro.classList.add("amagar")
-            campEolic.classList.add("amagar")
+            campSolar.classList.add("d-sm-none")
+            campHidro.classList.add("d-sm-none")
+            campEolic.classList.add("d-sm-none")
             break
     }
 }
