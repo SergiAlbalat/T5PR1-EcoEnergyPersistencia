@@ -1,7 +1,11 @@
-﻿namespace EcoEnergyRazorProject.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EcoEnergyRazorProject.Models
 {
     public class SistemaHidroelectric : SistemaEnergia, ICalculEnergia
     {
+        [Required(ErrorMessage = "El cabal d'aigua és obligatori.")]
+        [Range(20, 24, ErrorMessage = "El valor minim de cabal d'aigua és de 20 litres per metre cubic")]
         public double CabalAigua { get; set; }
 
         /// <summary>

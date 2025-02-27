@@ -1,7 +1,11 @@
-﻿namespace EcoEnergyRazorProject.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EcoEnergyRazorProject.Models
 {
     public class SistemaEolic : SistemaEnergia, ICalculEnergia
     {
+        [Required(ErrorMessage = "La velocitat del vent és obligatoria")]
+        [Range(5.00000001, 999999, ErrorMessage = "El valor minim de kn/h és de 5 sense incloir-lo.")]
         public double VelocitatVent { get; set; }
 
         /// <summary>

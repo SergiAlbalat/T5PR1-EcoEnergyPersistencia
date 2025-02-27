@@ -1,0 +1,35 @@
+﻿@page
+@model EcoEnergyRazorProject.Pages.AfegirSimulacioModel
+@{
+	ViewData["title"] = "Afegir Simulació";
+}
+@section scripts{
+	<script type="text/javascript" src="@Url.Content("js/OpcionsAfegirSimulacio.js")"></script>
+}
+<h2>Crear Simulació</h2>
+<form method="post">
+	<div class="form-group">
+		<label asp-for="Tipus">Tipus: </label>
+		<select asp-for="Tipus" id="Tipus">
+			<option value=""></option>
+			<option value="1">Solar</option>
+			<option value="2">Hidroelectric</option>
+			<option value="3">Eolic</option>
+		</select>
+	</div>
+	<div class="form-group, amagar" id="Solar">
+		<label asp-for="SistemaSolar.HoresDeSol">Hores de Sol: </label>
+		<input asp-for="SistemaSolar.HoresDeSol" class="form-control"/>
+		<span asp-validation-for="SistemaSolar.HoresDeSol" class="text-danger"></span>
+	</div>
+	<div class="form-group, amagar" id="Hidro">
+		<label asp-for="SistemaHidroelectric.CabalAigua">Cabal de l'aigua: </label>
+		<input asp-for="SistemaHidroelectric.CabalAigua" class="form-control" />
+		<span asp-validation-for="SistemaHidroelectric.CabalAigua" class="text-danger"></span>
+	</div>
+	<div class="form-group, amagar" id="Eolic">
+		<label asp-for="SistemaEolic.VelocitatVent">Velocitat del vent: </label>
+		<input asp-for="SistemaEolic.VelocitatVent" class="form-control" />
+		<span asp-validation-for="SistemaEolic.VelocitatVent" class="text-danger"></span>
+	</div>
+</form>
