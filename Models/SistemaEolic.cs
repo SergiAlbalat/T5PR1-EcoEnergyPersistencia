@@ -25,7 +25,7 @@ namespace EcoEnergyRazorProject.Models
             ContadorSimulacions++;
         }
         public SistemaEolic() : this(ParametrePerDefecte) { }
-        public SistemaEolic(double velocitatVent, DateTime data)
+        public SistemaEolic(DateTime data, double velocitatVent, double rati, double cost, double preu, double costTotal, double preuTotal)
         {
             if (!ComprovarParametre(velocitatVent))
             {
@@ -33,12 +33,17 @@ namespace EcoEnergyRazorProject.Models
             }
             Tipus = "Eolic";
             VelocitatVent = velocitatVent;
-            Energia = CalcularEnergia();
             Data = data;
             ContadorSimulacions++;
+            Rati = rati;
+            Energia = CalcularEnergia();
+            Cost = cost;
+            Preu = preu;
+            CostTotal = costTotal;
+            PreuTotal = preuTotal;
         }
         public bool ComprovarParametre(double argument) => argument > 5;
-        public double CalcularEnergia() => Math.Round(Math.Pow(VelocitatVent, 3) * 0.2, 4);
+        public double CalcularEnergia() => Math.Round(Math.Pow(VelocitatVent, 3) * Rati, 4);
         public void MostrarInformacio()
         {
             Console.WriteLine($"Tipus de Energia\tVelocitat del vent:\tEnergia Generada:\tData:\n{Tipus}\t{VelocitatVent}m/s\t{Energia}Kb\t{Data}");

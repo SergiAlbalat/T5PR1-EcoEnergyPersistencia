@@ -1,13 +1,21 @@
-﻿namespace EcoEnergyRazorProject.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EcoEnergyRazorProject.Models
 {
     public abstract class SistemaEnergia
     {
         protected string? Tipus { get; set; }
         protected double Energia { get; set; }
         protected DateTime Data { get; set; }
-        protected double Rati { get; set; }
-        protected double Cost { get; set; }
-        protected double Preu { get; set; }
+        [Required(ErrorMessage = "El camp es obligatori")]
+        [Range(0.000000001, 3, ErrorMessage = "El valor ha d'estar entre 0,00000001 i 3")]
+        public double Rati { get; set; }
+        [Required(ErrorMessage = "El camp es obligatori")]
+        [Range(0, 9999999999999999999, ErrorMessage = "El valor ha de ser positiu")]
+        public double Cost { get; set; }
+        [Required(ErrorMessage = "El camp es obligatori")]
+        [Range(0, 9999999999999999999, ErrorMessage = "El valor ha de ser positiu")]
+        public double Preu { get; set; }
         protected double CostTotal {  get; set; }
         protected double PreuTotal {  get; set; }
         protected static int ContadorSimulacions = 0;
@@ -37,24 +45,6 @@
         /// </summary>
         /// <returns>Contingut de Data</returns>
         public DateTime GetData() => Data;
-
-        /// <summary>
-        /// Dona el contingut del atribut Rati
-        /// </summary>
-        /// <returns>Contingut de Rati</returns>
-        public double GetRati() => Rati;
-
-        /// <summary>
-        /// Dona el contingut del atribut Cost
-        /// </summary>
-        /// <returns>Contingut de Cost</returns>
-        public double GetCost() => Cost;
-
-        /// <summary>
-        /// Dona el contingut del atribut Preu
-        /// </summary>
-        /// <returns>Contingut de Preu</returns>
-        public double GetPreu() => Preu;
 
         /// <summary>
         /// Dona el contingut del atribut CostTotal

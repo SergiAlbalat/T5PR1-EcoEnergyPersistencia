@@ -25,7 +25,7 @@ namespace EcoEnergyRazorProject.Models
             ContadorSimulacions++;
         }
         public SistemaHidroelectric() : this(ParametrePerDefecte) { }
-        public SistemaHidroelectric(double cabalAigua, DateTime data)
+        public SistemaHidroelectric(DateTime data, double cabalAigua, double rati, double cost, double preu, double costTotal, double preuTotal)
         {
             if (!ComprovarParametre(cabalAigua))
             {
@@ -33,12 +33,17 @@ namespace EcoEnergyRazorProject.Models
             }
             Tipus = "Hidro";
             CabalAigua = cabalAigua;
-            Energia = CalcularEnergia();
             Data = data;
             ContadorSimulacions++;
+            Rati = rati;
+            Energia = CalcularEnergia();
+            Cost = cost;
+            Preu = preu;
+            CostTotal = costTotal;
+            PreuTotal = preuTotal;
         }
         public bool ComprovarParametre(double argument) => argument >= 20;
-        public double CalcularEnergia() => Math.Round(CabalAigua * 9.8 * 0.8, 4);
+        public double CalcularEnergia() => Math.Round(CabalAigua * 9.8 * Rati, 4);
         public void MostrarInformacio()
         {
             Console.WriteLine($"Tipus de Energia\tCabal d'Aigua:\tEnergia Generada:\tData:\n{Tipus}\t{CabalAigua}m3\t{Energia}Kb\t{Data}");
