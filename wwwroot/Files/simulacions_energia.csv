@@ -1,2 +1,6 @@
-Solar,5.2,new DateTime(2024-12-11)
-Hidro,30,new DateTime(2025-01-30)
+Data,Tipus,EntradaEnergia,Rati,Cost,Preu,EnergiaGenerada,CostTotal,PreuTotal
+03/01/2025 20:53:29,Solar,9,2,20,50,18,360,900
+03/01/2025 20:59:06,Solar,9,2,20,50,18,360,900
+03/01/2025 21:05:27,Solar,9,2,20,50,18,360,900
+03/01/2025 22:05:15,Solar,9,2,120,50,18,2160,900
+03/01/2025 22:06:50,Solar,9,2,1.2,0.5,18,21.599999999999998,9
