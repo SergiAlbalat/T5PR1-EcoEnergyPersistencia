@@ -22,10 +22,9 @@ namespace EcoEnergyRazorProject.Models
             HoresDeSol = horesDeSol;
             Energia = CalcularEnergia();
             Data = DateTime.Now;
-            ContadorSimulacions++;
         }
         public SistemaSolar() : this(ParametrePerDefecte) { }
-        public SistemaSolar(DateTime data, double horesDeSol, double rati, double cost, double preu, double costTotal, double preuTotal)
+        public SistemaSolar(DateTime data, double horesDeSol, double rati, double cost, double preu)
         {
             if (!ComprovarParametre(horesDeSol))
             {
@@ -34,13 +33,12 @@ namespace EcoEnergyRazorProject.Models
             Tipus = "Solar";
             HoresDeSol = horesDeSol;
             Data = data;
-            ContadorSimulacions++;
             Rati = rati;
             Energia = CalcularEnergia();
             Cost = cost;
             Preu = preu;
-            CostTotal = costTotal;
-            PreuTotal = preuTotal;
+            CostTotal = CalcularCostTotal();
+            PreuTotal = CalcularPreuTotal();
         }
         public bool ComprovarParametre(double argument) => argument > 1;
         public double CalcularEnergia() => Math.Round(HoresDeSol * Rati, 4);

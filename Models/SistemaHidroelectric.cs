@@ -5,7 +5,7 @@ namespace EcoEnergyRazorProject.Models
     public class SistemaHidroelectric : SistemaEnergia, ICalculEnergia
     {
         [Required(ErrorMessage = "El cabal d'aigua és obligatori.")]
-        [Range(20, 24, ErrorMessage = "El valor minim de cabal d'aigua és de 20 litres per metre cubic")]
+        [Range(20, 99999999999, ErrorMessage = "El valor minim de cabal d'aigua és de 20 litres per metre cubic")]
         public double CabalAigua { get; set; }
 
         /// <summary>
@@ -22,10 +22,9 @@ namespace EcoEnergyRazorProject.Models
             CabalAigua = cabalAigua;
             Energia = CalcularEnergia();
             Data = DateTime.Now;
-            ContadorSimulacions++;
         }
         public SistemaHidroelectric() : this(ParametrePerDefecte) { }
-        public SistemaHidroelectric(DateTime data, double cabalAigua, double rati, double cost, double preu, double costTotal, double preuTotal)
+        public SistemaHidroelectric(DateTime data, double cabalAigua, double rati, double cost, double preu)
         {
             if (!ComprovarParametre(cabalAigua))
             {
@@ -34,13 +33,12 @@ namespace EcoEnergyRazorProject.Models
             Tipus = "Hidro";
             CabalAigua = cabalAigua;
             Data = data;
-            ContadorSimulacions++;
             Rati = rati;
             Energia = CalcularEnergia();
             Cost = cost;
             Preu = preu;
-            CostTotal = costTotal;
-            PreuTotal = preuTotal;
+            CostTotal = CalcularCostTotal();
+            PreuTotal = CalcularPreuTotal();
         }
         public bool ComprovarParametre(double argument) => argument >= 20;
         public double CalcularEnergia() => Math.Round(CabalAigua * 9.8 * Rati, 4);

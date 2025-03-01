@@ -2,7 +2,7 @@
 
 namespace EcoEnergyRazorProject.Models
 {
-    public abstract class SistemaEnergia
+    public class SistemaEnergia
     {
         protected string? Tipus { get; set; }
         protected double Energia { get; set; }
@@ -18,13 +18,6 @@ namespace EcoEnergyRazorProject.Models
         public double Preu { get; set; }
         protected double CostTotal {  get; set; }
         protected double PreuTotal {  get; set; }
-        protected static int ContadorSimulacions = 0;
-
-        /// <summary>
-        /// Dona el constingut del atribut ContadorSimulacions
-        /// </summary>
-        /// <returns>Contingut de Contador Simulacions</returns>
-        public static int GetContador() => ContadorSimulacions;
         protected const double ParametrePerDefecte = 20.0d;
         protected const string ErrorForaRang = "L'argument es troba fora de rang";
 
