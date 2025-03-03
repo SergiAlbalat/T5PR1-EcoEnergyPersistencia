@@ -7,21 +7,35 @@
 <table class="table">
     <thead>
 		<th>Tipus</th>
-		<th>Energia</th>
 		<th>Data</th>
+		<th>Entrada d'energia</th>
+		<th>Rati</th>
+		<th>Energia</th>
+		<th>Cost</th>
+		<th>Preu</th>
+		<th>Cost Total</th>
+		<th>Preu Total</th>
 	</thead>
 	<tbody>
-		@if(Model.FileExist){
+		@if(Model.FileExist && Model.HasRecords){
 			@foreach (var simulacio in Model.LlistaSimulacions)
 			{
-				<tr>@simulacio.GetTipus()</tr>
-				<tr>@simulacio.GetEnergia()</tr>
-				<tr>@simulacio.GetData()</tr>
+				<tr>
+					<td>@simulacio.Tipus</td>
+					<td>@simulacio.Data</td>
+					<td>@simulacio.EntradaEnergia</td>
+					<td>@simulacio.Rati</td>
+					<td>@simulacio.Energia</td>
+					<td>@simulacio.Cost</td>
+					<td>@simulacio.Preu</td>
+					<td>@simulacio.CostTotal</td>
+					<td>@simulacio.PreuTotal</td>
+				</tr>
 			}
 		}else{
-			<th colspan="3">No hi ha simulcions creades</th>
+			<th colspan="9">No hi ha simulcions creades</th>
 		}
 		
 	</tbody>
 </table>
-<a asp-page="/AfegirSimulacio" class="btn btn-primary">Afegir Simulacions</a>
+<a asp-page="/AfegirSimulacio" class="btn btn-primary">Afegir Simulació</a>
