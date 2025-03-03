@@ -48,6 +48,7 @@ namespace EcoEnergyRazorProject.Pages
                     int maxAny = ConsumsAigua.Max(n => n.Any);
                     int anyMinim = maxAny - 5;
                     LlocsAugment = ConsumsAigua.Where(n => n.Any >= anyMinim).GroupBy(n => n.Comarca).Where(g => g.FirstOrDefault(r => r.Any == anyMinim) != null && g.FirstOrDefault(r => r.Any == maxAny) != null).Where(g => g.First(r => r.Any == maxAny).Total > g.First(r => r.Any == anyMinim).Total).Select( g => new Comarca { Nom = g.Key }).ToList();
+
                 }
             }
             
