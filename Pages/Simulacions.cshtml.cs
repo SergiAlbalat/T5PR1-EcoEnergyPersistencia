@@ -12,7 +12,7 @@ namespace EcoEnergyRazorProject.Pages
 {
     public class SimulacionsModel : PageModel
     {
-        public List<SistemaEnergia> LlistaSimulacions { get; set; } = new List<SistemaEnergia>(300);
+        public List<SistemaEnergia> LlistaSimulacions { get; set; } = new List<SistemaEnergia>();
         public  bool FileExist { get; set; } = false;
         public bool HasRecords { get; set; } = false;
         public void OnGet()
