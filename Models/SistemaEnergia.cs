@@ -1,13 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace EcoEnergyRazorProject.Models
 {
     public class SistemaEnergia
     {
-        protected string? Tipus { get; set; }
-        protected double Energia { get; set; }
-        protected DateTime Data { get; set; }
-        [Required(ErrorMessage = "El camp es obligatori")]
+        public string? Tipus { get; set; }
+        [Required(ErrorMessage = "El camp és obligatori")]
+        public double EntradaEnergia { get; set; }
+        public double Energia { get; set; }
+        public DateTime Data { get; set; }
+        [Required(ErrorMessage = "El camp és obligatori")]
         [Range(0.000000001, 3, ErrorMessage = "El valor ha d'estar entre 0,00000001 i 3")]
         public double Rati { get; set; }
         [Required(ErrorMessage = "El camp es obligatori")]
@@ -16,51 +19,99 @@ namespace EcoEnergyRazorProject.Models
         [Required(ErrorMessage = "El camp es obligatori")]
         [Range(0, 9999999999999999999, ErrorMessage = "El valor ha de ser positiu")]
         public double Preu { get; set; }
-        protected double CostTotal {  get; set; }
-        protected double PreuTotal {  get; set; }
-        protected const double ParametrePerDefecte = 20.0d;
-        protected const string ErrorForaRang = "L'argument es troba fora de rang";
+        public double CostTotal {  get; set; }
+        public double PreuTotal {  get; set; }
+        private const double ParametrePerDefecte = 20.0d;
+        private const string ErrorForaRang = "L'argument es troba fora de rang";
 
         /// <summary>
-        /// Dona el contingut del atribut Tipus
+        /// Constructor de la classe Sistema Energia per llegir csv
         /// </summary>
-        /// <returns>Constingut de Tipus</returns>
-        public string? GetTipus() => Tipus;
+        /// <param name="data">Data de creacio</param>
+        /// <param name="tipus">Tipus Simulacio</param>
+        /// <param name="entradaEnergia">Entrada de energia com per exemple hores de sol o velocitat del vent</param>
+        /// <param name="rati">Valor pel que es calcula la energia</param>
+        /// <param name="cost">Cost per generar la energia</param>
+        /// <param name="preu">Preu a la que es ven la energia</param>
+        /// <param name="costTotal">Cost total per generar l'energia</param>
+        /// <param name="preuTotal">Preu de venta de la totalitat de l'energia</param>
+        public SistemaEnergia(string tipus, double entradaEnergia, double energiaGenerada, DateTime data, double rati, double cost, double preu, double costTotal, double preuTotal)
+        {
+            Tipus = tipus;
+            EntradaEnergia = entradaEnergia;
+            Data = data;
+            Rati = rati;
+            Energia = energiaGenerada;
+            Cost = cost;
+            Preu = preu;
+            CostTotal = costTotal;
+            PreuTotal = preuTotal;
+        }
 
         /// <summary>
-        /// Dona el contingut del atribut Energia
+        /// Constructor sense parametres
         /// </summary>
-        /// <returns>Contingut de Energia</returns>
-        public double GetEnergia() => Energia;
+        public SistemaEnergia() : this("Solar", ParametrePerDefecte, 10, DateTime.Now, 2, 0.1, 0.2, 1, 2) { }
 
         /// <summary>
-        /// Dona el contingut del atribut Data
+        /// Constructor de la classe Sistema Energia
         /// </summary>
-        /// <returns>Contingut de Data</returns>
-        public DateTime GetData() => Data;
+        /// <param name="data">Data de creacio</param>
+        /// <param name="tipus">Tipus Simulacio</param>
+        /// <param name="entradaEnergia">Entrada de energia com per exemple hores de sol o velocitat del vent</param>
+        /// <param name="rati">Valor pel que es calcula la energia</param>
+        /// <param name="cost">Cost per generar la energia</param>
+        /// <param name="preu">Preu a la que es ven la energia</param>
+        public SistemaEnergia(DateTime data, string tipus, double entradaEnergia, double rati, double cost, double preu)
+        {
+            double minim = 0;
+            Tipus = tipus;
+            switch (Tipus)
+            {
+                case "Solar":
+                    minim = 1;
+                    break;
+                case "Hidro":
+                    minim = 19.9;
+                    break;
+                case "Eolic":
+                    minim = 4.9;
+                    break;
+            }
+            EntradaEnergia = entradaEnergia;
+            Data = data;
+            Rati = rati;
+            switch (Tipus)
+            {
+                case "Solar":
+                    Energia = CalcularEnergia(entradaEnergia);
+                    break;
+                case "Hidro":
+                    Energia = CalcularEnergia(entradaEnergia * 9.8);
+                    break;
+                case "Eolic":
+                    Energia = CalcularEnergia(Math.Pow(entradaEnergia, 3));
+                    break;
+            }
+            Cost = cost;
+            Preu = preu;
+            CostTotal = CalcularCostTotal();
+            PreuTotal = CalcularPreuTotal();
+        }
 
-        /// <summary>
-        /// Dona el contingut del atribut CostTotal
-        /// </summary>
-        /// <returns>Contingut de CostTotal</returns>
-        public double GetCostTotal() => CostTotal;
 
-        /// <summary>
-        /// Dona el contingut del atribut PreuTotal
-        /// </summary>
-        /// <returns>Contingut de PreuTotal</returns>
-        public double GetPreuTotal() => PreuTotal;
+        public double CalcularEnergia(double entradaEnergia) => Math.Round(entradaEnergia * Rati, 4);
 
         /// <summary>
         /// Calcula el cost total per generar la energia
         /// </summary>
         /// <returns>El resultat del calcul</returns>
-        protected double CalcularCostTotal() => Cost*Energia;
+        private double CalcularCostTotal() => Cost*Energia;
 
         /// <summary>
         /// Calcula el preu total al que es vendra la energia generada
         /// </summary>
         /// <returns>El resultat del calcul</returns>
-        protected double CalcularPreuTotal() => Preu*Energia;
+        private double CalcularPreuTotal() => Preu*Energia;
     }
 }
