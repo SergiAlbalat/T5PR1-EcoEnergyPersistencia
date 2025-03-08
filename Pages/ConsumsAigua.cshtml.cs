@@ -26,7 +26,7 @@ namespace EcoEnergyRazorProject.Pages
                 {
                     HasHeaderRecord = true,
                 };
-                using (var reader = new StreamReader("wwwroot/Files/consum_aigua_cat_per_comarques.csv"))
+                using (var reader = new StreamReader(file))
                 using (var csv = new CsvReader(reader, config))
                 {
                     var registres = csv.GetRecords<ConsumAigua>();
@@ -48,7 +48,6 @@ namespace EcoEnergyRazorProject.Pages
                     int maxAny = ConsumsAigua.Max(n => n.Any);
                     int anyMinim = maxAny - 5;
                     LlocsAugment = ConsumsAigua.Where(n => n.Any >= anyMinim).GroupBy(n => n.Comarca).Where(g => g.FirstOrDefault(r => r.Any == anyMinim) != null && g.FirstOrDefault(r => r.Any == maxAny) != null).Where(g => g.First(r => r.Any == maxAny).Total > g.First(r => r.Any == anyMinim).Total).Select( g => new Comarca { Nom = g.Key }).ToList();
-
                 }
             }
             
