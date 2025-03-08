@@ -3,6 +3,41 @@
 @{
 	ViewData["title"] = "Consums d'aigua";
 }
+<h2>Informe Detallat:</h2>
+<table class="table">
+	<thead>
+	<th>Any</th>
+	<th>Codi Comarca</th>
+	<th>Comarca</th>
+	<th>Poblacio</th>
+	<th>Domèstic Xarxa</th>
+	<th>Activitats econòmiques i fonts pròpies</th>
+	<th>Total</th>
+	<th>Consum domèstic per càpita</th>
+	</thead>
+	<tbody>
+		@if (Model.FileExist && Model.HasRecords)
+		{
+			@foreach (var consum in Model.ConsumsAigua)
+			{
+				<tr>
+					<td>@consum.Any</td>
+					<td>@consum.CodiComarca</td>
+					<td>@consum.Comarca</td>
+					<td>@consum.Poblacio</td>
+					<td>@consum.DomesticXarxa</td>
+					<td>@consum.ActivitatsFonts</td>
+					<td>@consum.Total</td>
+					<td>@consum.Consum</td>
+				</tr>
+			}
+		}
+		else
+		{
+		<th colspan="8">No hi ha registres creats</th>
+		}
+	</tbody>
+</table>
 <h2>10 Municipis amb més consum d'aigua</h2>
 <table class="table">
 	<thead>
