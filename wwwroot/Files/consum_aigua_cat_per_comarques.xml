@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ConsumAigua>
+  <Any>2020</Any>
+  <Comarca>
+    <Codi>1321321</Codi>
+    <Nom>Proba</Nom>
+  </Comarca>
+  <Poblacio>232131</Poblacio>
+  <DomesticXarxa>23432</DomesticXarxa>
+  <ActivitatsFonts>12312</ActivitatsFonts>
+  <Total>1231</Total>
+  <Consum>123</Consum>
+</ConsumAigua>
