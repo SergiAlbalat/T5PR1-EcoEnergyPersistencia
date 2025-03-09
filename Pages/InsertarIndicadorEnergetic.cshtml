@@ -1,0 +1,37 @@
+﻿@page
+@model EcoEnergyRazorProject.Pages.InsertarIndicadorEnergeticModel
+@{
+	ViewData["Title"] = "Afegir Indicador Energetic";
+}
+<h2>Afegir Indicador Eneretic</h2>
+<form method="post">
+	<div class="form-group">
+		<label asp-for="IndicadorEnergetic.Data">Data: </label>
+		<input asp-for="IndicadorEnergetic.Data" class="form-control" />
+		<span asp-validation-for="IndicadorEnergetic.Data" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="IndicadorEnergetic.CDEEBC_ProdNeta">Producció Neta: </label>
+		<input asp-for="IndicadorEnergetic.CDEEBC_ProdNeta" class="form-control" />
+		<span asp-validation-for="IndicadorEnergetic.CDEEBC_ProdNeta" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="IndicadorEnergetic.CCAC_GasolinaAuto">Consum de gasolina d'automobil': </label>
+		<input asp-for="IndicadorEnergetic.CCAC_GasolinaAuto" class="form-control" />
+		<span asp-validation-for="IndicadorEnergetic.CCAC_GasolinaAuto" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="IndicadorEnergetic.CDEEBC_DemandaElectr">Demanda Elèctrica: </label>
+		<input asp-for="IndicadorEnergetic.CDEEBC_DemandaElectr" class="form-control" />
+		<span asp-validation-for="IndicadorEnergetic.CDEEBC_DemandaElectr" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="IndicadorEnergetic.CDEEBC_ProdDisp">Producció Disponible: </label>
+		<input asp-for="IndicadorEnergetic.CDEEBC_ProdDisp" class="form-control" />
+		<span asp-validation-for="IndicadorEnergetic.CDEEBC_ProdDisp" class="text-danger"></span>
+	</div>
+	<button type="submit" class="btn btn-primary" id="Enviar">Afegir</button>
+</form>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

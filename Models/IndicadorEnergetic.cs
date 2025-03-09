@@ -1,7 +1,10 @@
-﻿namespace EcoEnergyRazorProject.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EcoEnergyRazorProject.Models
 {
     public class IndicadorEnergetic
     {
+        [Required(ErrorMessage = "Aquest camp és obligatori")]
         public DateTime Data { get; set; }
         public double PBEE_Hidroelectr { get; set; }
         public double PBEE_Carbo { get; set; }
@@ -11,11 +14,14 @@
         public double PBEE_Nuclear { get; set; }
         public double CDEEBC_ProdBruta { get; set; }
         public double CDEEBC_ConsumAux { get; set; }
+        [Required(ErrorMessage = "Aquest camp és obligatori")]
         public double CDEEBC_ProdNeta { get; set; }
         public double CDEEBC_ConsumBomb { get; set; }
+        [Required(ErrorMessage = "Aquest camp és obligatori")]
         public double CDEEBC_ProdDisp { get; set; }
         public double CDEEBC_TotVendesXarxaCentral { get; set; }
         public double CDEEBC_SaldoIntercanviElectr { get; set; }
+        [Required(ErrorMessage = "Aquest camp és obligatori")]
         public double CDEEBC_DemandaElectr { get; set; }
         public double CDEEBC_TotalEBCMercatRegulat { get; set; }
         public double CDEEBC_TotalEBCMercatLliure { get; set; }
@@ -40,6 +46,7 @@
         public double DGGN_PuntFrontEnagas { get; set; }
         public double DGGN_DistrAlimGNL { get; set; }
         public double DGGN_ConsumGNCentrTerm { get; set; }
+        [Required(ErrorMessage = "Aquest camp és obligatori")]
         public double CCAC_GasolinaAuto { get; set; }
         public double CCAC_GasoilA { get; set; }
     }
