@@ -42,7 +42,7 @@ namespace EcoEnergyRazorProject.Pages
                     MitjanesConsums = ConsumsAigua.GroupBy(v => v.Comarca).Select(g => new MitjanaConsumAigua
                         {
                             Comarca = g.Key,          
-                            Mitjana = g.Average(v => v.Consum)
+                            Mitjana = g.Average(v => v.Total)
                         }).OrderByDescending(consum => consum.Mitjana).ToList();
                     ConsumsSospitosos = ConsumsAigua.Where(n => n.Total > 999999).ToList();
                     int maxAny = ConsumsAigua.Max(n => n.Any);

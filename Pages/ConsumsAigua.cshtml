@@ -3,6 +3,12 @@
 @{
 	ViewData["title"] = "Consums d'aigua";
 }
+<div>
+	<a href="#Top10" class="btn btn-primary">10 Municipis amb més consum d'aigua</a>
+	<a href="#Mitjanes" class="btn btn-primary">Mitjanes Comarques</a>
+	<a href="#Sospitosos" class="btn btn-primary">Consums Sospitosos</a>
+	<a href="#Creixents" class="btn btn-primary">Comarques creixents</a>
+</div>
 <h2>Informe Detallat:</h2>
 <table class="table">
 	<thead>
@@ -38,7 +44,7 @@
 		}
 	</tbody>
 </table>
-<h2>10 Municipis amb més consum d'aigua</h2>
+<h2 id="Top10">10 Municipis amb més consum d'aigua</h2>
 <table class="table">
 	<thead>
 		<th>Any</th>
@@ -73,7 +79,7 @@
 		}
 	</tbody>
 </table>
-<h2>Mitjanes Comarques</h2>
+<h2 id="Mitjanes">Mitjanes Comarques</h2>
 <table class="table">
 	<thead>
 	<th>Comarca</th>
@@ -96,7 +102,7 @@
 		}
 	</tbody>
 </table>
-<h2>Consums Sospitosos</h2>
+<h2 id="Sospitosos">Consums Sospitosos</h2>
 <table class="table">
 	<thead>
 	<th>Any</th>
@@ -131,7 +137,7 @@
 		}
 	</tbody>
 </table>
-<h2>Comarques creixents</h2>
+<h2 id="Creixents">Comarques creixents</h2>
 <table class="table">
 	<thead>
 	<th>Comarca</th>

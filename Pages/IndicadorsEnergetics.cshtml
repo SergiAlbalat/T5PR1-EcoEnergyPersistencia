@@ -3,6 +3,12 @@
 @{
 	ViewData["title"] = "Indicadors Energetics";
 }
+<div>
+    <a href="#Superiors" class="btn btn-primary">Registres amb producció neta superior a 3000</a>
+    <a href="#Gasolina" class="btn btn-primary">Registres amb consum de gasolina superior a 100</a>
+    <a href="#Mitjana" class="btn btn-primary">Mitjanes de Produccio Neta de cada any</a>
+    <a href="#DemandaProd" class="btn btn-primary">Registres amb demanda elèctrica superior a 4000 i producció disponible inferior a 300</a>
+</div>
 <h2>Informe Detallat</h2>
 <table class="table">
 	<thead>
@@ -102,7 +108,7 @@
 		}
 	</tbody>
 </table>
-<h2>Registres amb producció neta superior a 3000</h2>
+<h2 id="Superiors">Registres amb producció neta superior a 3000</h2>
 <table class="table">
     <thead>
     <th>Data</th>
@@ -201,7 +207,7 @@
         }
     </tbody>
 </table>
-<h2>Registres amb consum de gasolina superior a 100</h2>
+<h2 id="Gasolina">Registres amb consum de gasolina superior a 100</h2>
 <table class="table">
     <thead>
     <th>Data</th>
@@ -300,7 +306,7 @@
         }
     </tbody>
 </table>
-<h2>Mitjanes de Produccio Neta de cada any</h2>
+<h2 id="Mitjana">Mitjanes de Produccio Neta de cada any</h2>
 <table class="table">
     <thead>
     <th>Any</th>
@@ -323,7 +329,7 @@
         }
     </tbody>
 </table>
-<h2>Registres amb demanda elèctrica superior a 4000 i producció disponible inferior a 300</h2>
+<h2 id="DemandaProd">Registres amb demanda elèctrica superior a 4000 i producció disponible inferior a 300</h2>
 <table class="table">
     <thead>
     <th>Data</th>
