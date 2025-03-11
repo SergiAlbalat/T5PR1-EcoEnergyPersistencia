@@ -2,6 +2,6 @@
 {
     public class Comarca
     {
-        public string Nom {  get; set; }
+        public string? Nom {  get; set; }
     }
 }

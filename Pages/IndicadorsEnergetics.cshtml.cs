@@ -34,7 +34,7 @@ namespace EcoEnergyRazorProject.Pages
                     {
                         IndicadorsEnergetics.Add(indicador);
                     }
-                    if (IndicadorsEnergetics.Count() > 0)
+                    if (IndicadorsEnergetics.Count > 0)
                     {
                         HasRecords = true;
                     }
