@@ -34,11 +34,11 @@ namespace EcoEnergyRazorProject.Pages
                     {
                         ConsumsAigua.Add(consum);
                     }
-                    if (ConsumsAigua.Count() > 0)
+                    if (ConsumsAigua.Count > 0)
                     {
                         HasRecords = true;
                     }
-                    MajorsConsums = ConsumsAigua.OrderByDescending(consum => consum.Total).Where(consum => consum.Any == ConsumsAigua.Max(consum => consum.Any)).Take(10).ToList();
+                    MajorsConsums = ConsumsAigua.Where(consum => consum.Any == ConsumsAigua.Max(consum => consum.Any)).OrderByDescending(consum => consum.Total).Take(10).ToList();
                     MitjanesConsums = ConsumsAigua.GroupBy(v => v.Comarca).Select(g => new MitjanaConsumAigua
                         {
                             Comarca = g.Key,          

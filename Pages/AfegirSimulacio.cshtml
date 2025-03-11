@@ -6,34 +6,41 @@
 <h2>Crear Simulació</h2>
 <form method="post">
 	<div class="form-group">
-		<label asp-for="Tipus">Tipus: </label>
-		<select asp-for="Tipus" id="Tipus" required>
-			<option value="" disabled selected>Selecciona una opcio</option>
-			<option value="1">Solar</option>
-			<option value="2">Hidroelectric</option>
-			<option value="3">Eolic</option>
-		</select>
+		<label asp-for="Tipus">Tipus: 
+			<select asp-for="Tipus" id="Tipus" required>
+				<option value="" disabled selected>Selecciona una opcio</option>
+				<option value="1">Solar</option>
+				<option value="2">Hidroelectric</option>
+				<option value="3">Eolic</option>
+			</select>
+		</label>
 	</div>
 	<div class="form-group, d-sm-none" id="Entrada">
-		<label asp-for="SistemaEnergia.EntradaEnergia" id="EntradaText"></label>
-		<input asp-for="SistemaEnergia.EntradaEnergia" class="form-control" />
-		<span asp-validation-for="SistemaEnergia.EntradaEnergia" class="text-danger"></span>
+		<label asp-for="SistemaEnergia.EntradaEnergia">
+			<span id="EntradaText"></span>
+			<input asp-for="SistemaEnergia.EntradaEnergia" class="form-control" />
+			<span asp-validation-for="SistemaEnergia.EntradaEnergia" class="text-danger"></span>
+		</label>
 	</div>
 	<div class="form-group">
-		<label asp-for="SistemaEnergia.Rati">Rati(N.N): </label>
-		<input asp-for="SistemaEnergia.Rati" class="form-control" />
-		<span asp-validation-for="SistemaEnergia.Rati" class="text-danger"></span>
+		<label asp-for="SistemaEnergia.Rati">Rati(N.N):
+			<input asp-for="SistemaEnergia.Rati" class="form-control" />
+			<span asp-validation-for="SistemaEnergia.Rati" class="text-danger"></span>
+		</label>
 	</div>
 	<div class="form-group">
-		<label asp-for="SistemaEnergia.Cost">Cost(N.NN): </label>
-		<input asp-for="SistemaEnergia.Cost" class="form-control" />
-		<span asp-validation-for="SistemaEnergia.Cost" class="text-danger"></span>
+		<label asp-for="SistemaEnergia.Cost">Cost(N.NN): 
+			<input asp-for="SistemaEnergia.Cost" class="form-control" />
+			<span asp-validation-for="SistemaEnergia.Cost" class="text-danger"></span>
+		</label>
 	</div>
 	<div class="form-group">
-		<label asp-for="SistemaEnergia.Preu">Preu(N.NN): </label>
-		<input asp-for="SistemaEnergia.Preu" class="form-control" />
-		<span asp-validation-for="SistemaEnergia.Preu" class="text-danger"></span>
+		<label asp-for="SistemaEnergia.Preu">Preu(N.NN): 
+			<input asp-for="SistemaEnergia.Preu" class="form-control" />
+			<span asp-validation-for="SistemaEnergia.Preu" class="text-danger"></span>
+		</label>
 	</div>
+	<br/>
 	<button type="submit" class="btn btn-primary d-sm-none" id="Enviar">Afegir</button>
 </form>
 @section Scripts {

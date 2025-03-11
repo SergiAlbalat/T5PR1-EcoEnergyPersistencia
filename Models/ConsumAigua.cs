@@ -9,7 +9,7 @@ namespace EcoEnergyRazorProject.Models
         [Required(ErrorMessage = "Aquest camp és obligatori.")]
         public int CodiComarca { get; set; }
         [Required(ErrorMessage = "Aquest camp és obligatori.")]
-        public string Comarca { get; set; }
+        public string? Comarca { get; set; }
         [Required(ErrorMessage = "Aquest camp és obligatori.")]
         public int Poblacio { get; set; }
         [Required(ErrorMessage = "Aquest camp és obligatori.")]

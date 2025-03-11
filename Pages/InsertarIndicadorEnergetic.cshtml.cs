@@ -11,9 +11,6 @@ namespace EcoEnergyRazorProject.Pages
     {
         [BindProperty]
         public IndicadorEnergetic IndicadorEnergetic { get; set; }
-        public void OnGet()
-        {
-        }
         public IActionResult OnPost()
         {
             string rutaJson = "wwwroot/Files/indicadors_energetics_cat.json";

@@ -78,6 +78,10 @@ namespace EcoEnergyRazorProject.Models
                     minim = 4.9;
                     break;
             }
+            if(!(entradaEnergia > minim))
+            {
+                throw new ArgumentOutOfRangeException(ErrorForaRang);
+            }
             EntradaEnergia = entradaEnergia;
             Data = data;
             Rati = rati;

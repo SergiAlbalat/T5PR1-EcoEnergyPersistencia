@@ -10,12 +10,9 @@ namespace EcoEnergyRazorProject.Pages
     public class AfegirSimulacioModel : PageModel
     {
         [BindProperty]
-        public SistemaEnergia SistemaEnergia { get; set; }
+        public SistemaEnergia? SistemaEnergia { get; set; }
         [BindProperty]
         public string? Tipus {  get; set; }
-        public void OnGet()
-        {
-        }
         public IActionResult OnPost()
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)

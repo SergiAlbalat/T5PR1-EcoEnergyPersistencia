@@ -9,9 +9,6 @@ namespace EcoEnergyRazorProject.Pages
     {
         [BindProperty]
         public ConsumAigua ConsumAigua { get; set; }
-        public void OnGet()
-        {
-        }
         public IActionResult OnPost()
         {
             XDocument xmlDoc = new XDocument(
