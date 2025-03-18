@@ -5,10 +5,11 @@ namespace EcoEnergyRazorProject.Models
 {
     public class ConsumAigua
     {
-        [Required(ErrorMessage = "Aquest camp és obligatori.")]
-        public int Any {  get; set; }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Aquest camp és obligatori.")]
+        public int Any {  get; set; }
         [Required(ErrorMessage = "Aquest camp és obligatori.")]
         public int CodiComarca { get; set; }
         [Required(ErrorMessage = "Aquest camp és obligatori.")]

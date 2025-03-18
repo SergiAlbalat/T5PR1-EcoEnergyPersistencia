@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoEnergyRazorProject.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    [Migration("20250318113800_Initial")]
-    partial class Initial
+    [Migration("20250318123307_ConsumAiguaIdChange")]
+    partial class ConsumAiguaIdChange
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,16 +27,19 @@ namespace EcoEnergyRazorProject.Migrations
 
             modelBuilder.Entity("EcoEnergyRazorProject.Models.ConsumAigua", b =>
                 {
-                    b.Property<int>("CodiComarca")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodiComarca"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivitatsFonts")
                         .HasColumnType("int");
 
                     b.Property<int>("Any")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CodiComarca")
                         .HasColumnType("int");
 
                     b.Property<string>("Comarca")
@@ -55,7 +58,7 @@ namespace EcoEnergyRazorProject.Migrations
                     b.Property<int>("Total")
                         .HasColumnType("int");
 
-                    b.HasKey("CodiComarca");
+                    b.HasKey("Id");
 
                     b.ToTable("ConsumsAigua");
                 });

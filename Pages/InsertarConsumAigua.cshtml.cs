@@ -1,7 +1,7 @@
+using EcoEnergyRazorProject.Data;
 using EcoEnergyRazorProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Xml.Linq;
 
 namespace EcoEnergyRazorProject.Pages
 {
@@ -11,21 +11,9 @@ namespace EcoEnergyRazorProject.Pages
         public ConsumAigua ConsumAigua { get; set; }
         public IActionResult OnPost()
         {
-            XDocument xmlDoc = new XDocument(
-                new XElement("ConsumAigua",
-                    new XElement("Any", ConsumAigua.Any),
-                    new XElement("Comarca",
-                        new XElement("Codi", ConsumAigua.CodiComarca),
-                        new XElement("Nom", ConsumAigua.Comarca)
-                    ),
-                    new XElement("Poblacio", ConsumAigua.Poblacio),
-                    new XElement("DomesticXarxa", ConsumAigua.DomesticXarxa),
-                    new XElement("ActivitatsFonts", ConsumAigua.ActivitatsFonts),
-                    new XElement("Total", ConsumAigua.Total),
-                    new XElement("Consum", ConsumAigua.Consum)
-                )
-            );
-            xmlDoc.Save(@"wwwroot/Files/consum_aigua_cat_per_comarques.xml");
+            using var context = new AplicationDbContext();
+            context.ConsumsAigua.Add(ConsumAigua);
+            context.SaveChanges();
             return RedirectToPage("ConsumsAigua");
         }
     }

@@ -24,16 +24,19 @@ namespace EcoEnergyRazorProject.Migrations
 
             modelBuilder.Entity("EcoEnergyRazorProject.Models.ConsumAigua", b =>
                 {
-                    b.Property<int>("CodiComarca")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodiComarca"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivitatsFonts")
                         .HasColumnType("int");
 
                     b.Property<int>("Any")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CodiComarca")
                         .HasColumnType("int");
 
                     b.Property<string>("Comarca")
@@ -52,7 +55,7 @@ namespace EcoEnergyRazorProject.Migrations
                     b.Property<int>("Total")
                         .HasColumnType("int");
 
-                    b.HasKey("CodiComarca");
+                    b.HasKey("Id");
 
                     b.ToTable("ConsumsAigua");
                 });
