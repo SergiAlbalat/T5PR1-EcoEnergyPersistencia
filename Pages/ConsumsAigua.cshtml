@@ -3,12 +3,6 @@
 @{
 	ViewData["title"] = "Consums d'aigua";
 }
-<div>
-	<a href="#Top10" class="btn btn-primary">10 Municipis amb més consum d'aigua</a>
-	<a href="#Mitjanes" class="btn btn-primary">Mitjanes Comarques</a>
-	<a href="#Sospitosos" class="btn btn-primary">Consums Sospitosos</a>
-	<a href="#Creixents" class="btn btn-primary">Comarques creixents</a>
-</div>
 <h2>Informe Detallat:</h2>
 <table class="table">
 	<thead>
@@ -41,120 +35,6 @@
 		else
 		{
 		<th colspan="8">No hi ha registres creats</th>
-		}
-	</tbody>
-</table>
-<h2 id="Top10">10 Municipis amb més consum d'aigua</h2>
-<table class="table">
-	<thead>
-		<th>Any</th>
-		<th>Codi Comarca</th>
-		<th>Comarca</th>
-		<th>Poblacio</th>
-		<th>Domèstic Xarxa</th>
-		<th>Activitats econòmiques i fonts pròpies</th>
-		<th>Total</th>
-		<th>Consum domèstic per càpita</th>
-	</thead>
-	<tbody>
-		@if (Model.FileExist && Model.HasRecords)
-		{
-			@foreach (var consum in Model.MajorsConsums)
-			{
-				<tr>
-					<td>@consum.Any</td>
-					<td>@consum.CodiComarca</td>
-					<td>@consum.Comarca</td>
-					<td>@consum.Poblacio</td>
-					<td>@consum.DomesticXarxa</td>
-					<td>@consum.ActivitatsFonts</td>
-					<td>@consum.Total</td>
-					<td>@consum.Consum</td>
-				</tr>
-			}
-		}
-		else
-		{
-		<th colspan="8">No hi ha registres creats</th>
-		}
-	</tbody>
-</table>
-<h2 id="Mitjanes">Mitjanes Comarques</h2>
-<table class="table">
-	<thead>
-	<th>Comarca</th>
-	<th>Mitjana</th>
-	</thead>
-	<tbody>
-		@if (Model.FileExist && Model.HasRecords)
-		{
-			@foreach (var mitjana in Model.MitjanesConsums)
-			{
-				<tr>
-					<td>@mitjana.Comarca</td>
-					<td>@mitjana.Mitjana</td>
-				</tr>
-			}
-		}
-		else
-		{
-		<th colspan="2">No hi ha registres creats</th>
-		}
-	</tbody>
-</table>
-<h2 id="Sospitosos">Consums Sospitosos</h2>
-<table class="table">
-	<thead>
-	<th>Any</th>
-	<th>Codi Comarca</th>
-	<th>Comarca</th>
-	<th>Poblacio</th>
-	<th>Domèstic Xarxa</th>
-	<th>Activitats econòmiques i fonts pròpies</th>
-	<th>Total</th>
-	<th>Consum domèstic per càpita</th>
-	</thead>
-	<tbody>
-		@if (Model.FileExist && Model.HasRecords && Model.ConsumsSospitosos.Count > 0)
-		{
-			@foreach (var consum in Model.ConsumsSospitosos)
-			{
-				<tr>
-					<td>@consum.Any</td>
-					<td>@consum.CodiComarca</td>
-					<td>@consum.Comarca</td>
-					<td>@consum.Poblacio</td>
-					<td>@consum.DomesticXarxa</td>
-					<td>@consum.ActivitatsFonts</td>
-					<td>@consum.Total</td>
-					<td>@consum.Consum</td>
-				</tr>
-			}
-		}
-		else
-		{
-		<th colspan="8">No hi ha registres sospitosos</th>
-		}
-	</tbody>
-</table>
-<h2 id="Creixents">Comarques creixents</h2>
-<table class="table">
-	<thead>
-	<th>Comarca</th>
-	</thead>
-	<tbody>
-		@if (Model.FileExist && Model.HasRecords)
-		{
-			@foreach (var comarca in Model.LlocsAugment)
-			{
-				<tr>
-					<td>@comarca.Nom</td>
-				</tr>
-			}
-		}
-		else
-		{
-		<th>No hi ha registres creats</th>
 		}
 	</tbody>
 </table>

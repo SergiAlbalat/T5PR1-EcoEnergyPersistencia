@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EcoEnergyRazorProject.Models
 {
@@ -6,6 +7,8 @@ namespace EcoEnergyRazorProject.Models
     {
         [Required(ErrorMessage = "Aquest camp és obligatori.")]
         public int Any {  get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required(ErrorMessage = "Aquest camp és obligatori.")]
         public int CodiComarca { get; set; }
         [Required(ErrorMessage = "Aquest camp és obligatori.")]
