@@ -1,9 +1,7 @@
 using EcoEnergyRazorProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Text.Json;
-using System;
-using System.Security.Cryptography;
+using EcoEnergyRazorProject.Data;
 
 namespace EcoEnergyRazorProject.Pages
 {
@@ -13,7 +11,7 @@ namespace EcoEnergyRazorProject.Pages
         public IndicadorEnergetic IndicadorEnergetic { get; set; }
         public IActionResult OnPost()
         {
-            string rutaJson = "wwwroot/Files/indicadors_energetics_cat.json";
+            using var context = new AplicationDbContext();
             double valorDefecte = 0;
             IndicadorEnergetic indicador = new IndicadorEnergetic{
                 Data = IndicadorEnergetic.Data,
@@ -57,23 +55,8 @@ namespace EcoEnergyRazorProject.Pages
                 CCAC_GasolinaAuto = IndicadorEnergetic.CCAC_GasolinaAuto,
                 CCAC_GasoilA = valorDefecte
             };
-            List<IndicadorEnergetic> existingPeople;
-            if (!System.IO.File.Exists(rutaJson))
-            {
-                System.IO.File.WriteAllText(rutaJson, "");
-            }
-            string jsonFromFile = System.IO.File.ReadAllText(rutaJson);
-            if (!string.IsNullOrEmpty(jsonFromFile))
-            {
-                existingPeople = JsonSerializer.Deserialize<List<IndicadorEnergetic>>(jsonFromFile);
-            }
-            else
-            {
-                existingPeople = new List<IndicadorEnergetic>();
-            }
-            existingPeople.AddRange(indicador);
-            string jsonString = JsonSerializer.Serialize(existingPeople);
-            System.IO.File.WriteAllText(rutaJson, jsonString);
+            context.IndicadorsEnergetics.Add(indicador);
+            context.SaveChanges();
             return RedirectToPage("IndicadorsEnergetics");
         }
     }
