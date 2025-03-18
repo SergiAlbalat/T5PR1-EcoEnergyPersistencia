@@ -1,10 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 
 namespace EcoEnergyRazorProject.Models
 {
-    public class SistemaEnergia
+    public class Simulacio
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public string? Tipus { get; set; }
         [Required(ErrorMessage = "El camp és obligatori")]
         public double EntradaEnergia { get; set; }
@@ -35,7 +39,7 @@ namespace EcoEnergyRazorProject.Models
         /// <param name="preu">Preu a la que es ven la energia</param>
         /// <param name="costTotal">Cost total per generar l'energia</param>
         /// <param name="preuTotal">Preu de venta de la totalitat de l'energia</param>
-        public SistemaEnergia(string tipus, double entradaEnergia, double energiaGenerada, DateTime data, double rati, double cost, double preu, double costTotal, double preuTotal)
+        public Simulacio(string tipus, double entradaEnergia, double energiaGenerada, DateTime data, double rati, double cost, double preu, double costTotal, double preuTotal)
         {
             Tipus = tipus;
             EntradaEnergia = entradaEnergia;
@@ -51,7 +55,7 @@ namespace EcoEnergyRazorProject.Models
         /// <summary>
         /// Constructor sense parametres
         /// </summary>
-        public SistemaEnergia() : this("Solar", ParametrePerDefecte, 10, DateTime.Now, 2, 0.1, 0.2, 1, 2) { }
+        public Simulacio() : this("Solar", ParametrePerDefecte, 10, DateTime.Now, 2, 0.1, 0.2, 1, 2) { }
 
         /// <summary>
         /// Constructor de la classe Sistema Energia
@@ -62,7 +66,7 @@ namespace EcoEnergyRazorProject.Models
         /// <param name="rati">Valor pel que es calcula la energia</param>
         /// <param name="cost">Cost per generar la energia</param>
         /// <param name="preu">Preu a la que es ven la energia</param>
-        public SistemaEnergia(DateTime data, string tipus, double entradaEnergia, double rati, double cost, double preu)
+        public Simulacio(DateTime data, string tipus, double entradaEnergia, double rati, double cost, double preu)
         {
             double minim = 0;
             Tipus = tipus;

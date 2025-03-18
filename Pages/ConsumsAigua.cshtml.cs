@@ -10,10 +10,6 @@ namespace EcoEnergyRazorProject.Pages
     public class ConsumsAiguaModel : PageModel
     {
         public List<ConsumAigua> ConsumsAigua { get; set; } = new List<ConsumAigua>();
-        public List<ConsumAigua> MajorsConsums { get; set; } = new List<ConsumAigua>();
-        public List<MitjanaConsumAigua> MitjanesConsums { get; set; } = new List<MitjanaConsumAigua>();
-        public List<ConsumAigua> ConsumsSospitosos { get; set; } = new List<ConsumAigua>();
-        public List<Comarca> LlocsAugment { get; set; } = new List<Comarca>();
         public bool FileExist { get; set; } = false;
         public bool HasRecords { get; set; } = false;
         public void OnGet()
@@ -38,19 +34,8 @@ namespace EcoEnergyRazorProject.Pages
                     {
                         HasRecords = true;
                     }
-                    MajorsConsums = ConsumsAigua.Where(consum => consum.Any == ConsumsAigua.Max(consum => consum.Any)).OrderByDescending(consum => consum.Total).Take(10).ToList();
-                    MitjanesConsums = ConsumsAigua.GroupBy(v => v.Comarca).Select(g => new MitjanaConsumAigua
-                        {
-                            Comarca = g.Key,          
-                            Mitjana = g.Average(v => v.Total)
-                        }).OrderByDescending(consum => consum.Mitjana).ToList();
-                    ConsumsSospitosos = ConsumsAigua.Where(n => n.Total > 999999).ToList();
-                    int maxAny = ConsumsAigua.Max(n => n.Any);
-                    int anyMinim = maxAny - 5;
-                    LlocsAugment = ConsumsAigua.Where(n => n.Any >= anyMinim).GroupBy(n => n.Comarca).Where(g => g.FirstOrDefault(r => r.Any == anyMinim) != null && g.FirstOrDefault(r => r.Any == maxAny) != null).Where(g => g.First(r => r.Any == maxAny).Total > g.First(r => r.Any == anyMinim).Total).Select( g => new Comarca { Nom = g.Key }).ToList();
                 }
             }
-            
         }
     }
 }

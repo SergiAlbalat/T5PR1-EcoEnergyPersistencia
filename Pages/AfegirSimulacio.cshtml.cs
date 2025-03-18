@@ -1,5 +1,6 @@
 using CsvHelper;
 using CsvHelper.Configuration;
+using EcoEnergyRazorProject.Data;
 using EcoEnergyRazorProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,20 +11,13 @@ namespace EcoEnergyRazorProject.Pages
     public class AfegirSimulacioModel : PageModel
     {
         [BindProperty]
-        public SistemaEnergia? SistemaEnergia { get; set; }
+        public Simulacio? SistemaEnergia { get; set; }
         [BindProperty]
-        public string? Tipus {  get; set; }
+        public string? Tipus { get; set; }
         public IActionResult OnPost()
         {
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
-            {
-                HasHeaderRecord = false,
-            };
-            using var stream = System.IO.File.Open("wwwroot/Files/simulacions_energia.csv", FileMode.Append);
-            using var writer = new StreamWriter(stream);
-            using var csvWriter = new CsvWriter(writer, config);
+            using var context = new AplicationDbContext();
             string tipus = "";
-            csvWriter.NextRecord();
             switch (Tipus)
             {
                 case "1":
@@ -36,8 +30,9 @@ namespace EcoEnergyRazorProject.Pages
                     tipus = "Eolic";
                     break;
             }
-            SistemaEnergia simulacio = new SistemaEnergia(DateTime.Now, tipus, SistemaEnergia.EntradaEnergia, SistemaEnergia.Rati/10, SistemaEnergia.Cost/100, SistemaEnergia.Preu/100);
-            csvWriter.WriteRecord(simulacio);
+            Simulacio simulacio = new Simulacio(DateTime.Now, tipus, SistemaEnergia.EntradaEnergia, SistemaEnergia.Rati / 10, SistemaEnergia.Cost / 100, SistemaEnergia.Preu / 100);
+            context.Simulacions.Add(simulacio);
+            context.SaveChanges();
             return RedirectToPage("Simulacions");
         }
     }
