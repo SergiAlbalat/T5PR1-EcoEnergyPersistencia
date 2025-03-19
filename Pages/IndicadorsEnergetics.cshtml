@@ -48,7 +48,7 @@
         <th>CCAC_GasoilA</th>
 	</thead>
 	<tbody>
-		@if (Model.FileExist && Model.HasRecords)
+		@if (Model.HasRecords)
 		{
 			@foreach (var indicador in Model.IndicadorsEnergetics)
 			{

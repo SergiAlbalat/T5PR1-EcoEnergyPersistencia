@@ -17,7 +17,7 @@
 		<th>Preu Total</th>
 	</thead>
 	<tbody>
-		@if(Model.FileExist && Model.HasRecords){
+		@if(Model.HasRecords){
 			@foreach (var simulacio in Model.LlistaSimulacions)
 			{
 				<tr>
