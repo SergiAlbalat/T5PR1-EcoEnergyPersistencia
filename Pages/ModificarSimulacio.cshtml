@@ -1,0 +1,71 @@
+﻿@page
+@model EcoEnergyRazorProject.Pages.ModificarSimulacioModel
+@{
+	ViewData["Title"] = "Modificar Simulació";
+}
+<form method="post">
+	<input type="hidden" asp-for=@Model.Simulacio.Id/>
+	<div class="form-group">
+		<label asp-for="Simulacio.Tipus">
+			Tipus:
+			<select asp-for="Simulacio.Tipus" id="Tipus" required>
+				@if(Model.Simulacio.Tipus == "Solar")
+				{
+					<option value="Solar" selected>Solar</option>
+				}else{
+					<option value="Solar">Solar</option>
+				}
+				@if (Model.Simulacio.Tipus == "Hidro")
+				{
+					<option value="Hidro" selected>Hidroelèctric</option>
+				}
+				else
+				{
+					<option value="Hidro">Hidroelèctric</option>
+				}
+				@if (Model.Simulacio.Tipus == "Eolic")
+				{
+					<option value="Eolic" selected>Eòlic</option>
+				}
+				else
+				{
+					<option value="Eolic">Eòlic</option>
+				}
+			</select>
+		</label>
+	</div>
+	<div class="form-group, d-sm-none" id="Entrada">
+		<label asp-for="Simulacio.EntradaEnergia">
+			<span id="EntradaText"></span>
+			<input asp-for="Simulacio.EntradaEnergia" class="form-control" value="@Model.Simulacio.EntradaEnergia"/>
+			<span asp-validation-for="Simulacio.EntradaEnergia" class="text-danger"></span>
+		</label>
+	</div>
+	<div class="form-group">
+		<label asp-for="Simulacio.Rati">
+			Rati (N.N):
+			<input asp-for="Simulacio.Rati" class="form-control" value="@Model.Simulacio.Rati"/>
+			<span asp-validation-for="Simulacio.Rati" class="text-danger"></span>
+		</label>
+	</div>
+	<div class="form-group">
+		<label asp-for="Simulacio.Cost">
+			Cost (N.NN):
+			<input asp-for="Simulacio.Cost" class="form-control" value="@Model.Simulacio.Cost"/>
+			<span asp-validation-for="Simulacio.Cost" class="text-danger"></span>
+		</label>
+	</div>
+	<div class="form-group">
+		<label asp-for="Simulacio.Preu">
+			Preu (N.NN):
+			<input asp-for="Simulacio.Preu" class="form-control" value="@Model.Simulacio.Preu"/>
+			<span asp-validation-for="Simulacio.Preu" class="text-danger"></span>
+		</label>
+	</div>
+	<br />
+	<button type="submit" class="btn btn-primary" id="Enviar">Actualitzar</button>
+</form>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+	<script type="text/javascript" src="@Url.Content("js/OpcionsAfegirSimulacio.js")"></script>
+}

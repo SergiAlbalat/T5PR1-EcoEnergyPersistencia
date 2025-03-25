@@ -30,6 +30,18 @@
 					<td>@simulacio.Preu</td>
 					<td>@simulacio.CostTotal</td>
 					<td>@simulacio.PreuTotal</td>
+					<td>
+						<form method="post">
+							<button type="submit" asp-page-handler="edit" asp-route-id="@simulacio.Id">E</button>
+						</form>	
+					</td>
+					<td>
+						<form method="post" asp-handler="Delete">
+							<button type="submit" asp-page-handler="delete" asp-route-id="@simulacio.Id">
+								X
+							</button>
+						</form>
+					</td>
 				</tr>
 			}
 		}else{
