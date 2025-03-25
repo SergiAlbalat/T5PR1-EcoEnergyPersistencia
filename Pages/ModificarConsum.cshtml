@@ -1,0 +1,70 @@
+﻿@page
+@model EcoEnergyRazorProject.Pages.ModificarConsumModel
+@{
+	ViewData["Title"] = "Modificar Consum d'Aigua";
+}
+<h2>Modificar Consum d'Aigua</h2>
+<form method="post">
+	<input type="hidden" asp-for=@Model.ConsumAigua.Id />
+	<div class="form-group">
+		<label asp-for="ConsumAigua.Any">
+			Any:
+			<input asp-for="ConsumAigua.Any" class="form-control" value="@Model.ConsumAigua.Any"/>
+			<span asp-validation-for="ConsumAigua.Any" class="text-danger"></span>
+		</label>
+	</div>
+	<div class="form-group">
+		<label asp-for="ConsumAigua.CodiComarca">
+			Codi de la comarca:
+			<input asp-for="ConsumAigua.CodiComarca" class="form-control" value="@Model.ConsumAigua.CodiComarca"/>
+			<span asp-validation-for="ConsumAigua.CodiComarca" class="text-danger"></span>
+		</label>
+	</div>
+	<div class="form-group">
+		<label asp-for="ConsumAigua.Comarca">
+			Nom de la comarca:
+			<input asp-for="ConsumAigua.Comarca" class="form-control" value="@Model.ConsumAigua.Comarca"/>
+			<span asp-validation-for="ConsumAigua.Comarca" class="text-danger"></span>
+		</label>
+	</div>
+	<div class="form-group">
+		<label asp-for="ConsumAigua.Poblacio">
+			Numero de població:
+			<input asp-for="ConsumAigua.Poblacio" class="form-control" value="@Model.ConsumAigua.Poblacio"/>
+			<span asp-validation-for="ConsumAigua.Poblacio" class="text-danger"></span>
+		</label>
+	</div>
+	<div class="form-group">
+		<label asp-for="ConsumAigua.DomesticXarxa">
+			Consum en xarxes domestiques:
+			<input asp-for="ConsumAigua.DomesticXarxa" class="form-control" value="@Model.ConsumAigua.DomesticXarxa"/>
+			<span asp-validation-for="ConsumAigua.DomesticXarxa" class="text-danger"></span>
+		</label>
+	</div>
+	<div class="form-group">
+		<label asp-for="ConsumAigua.ActivitatsFonts">
+			Consum d'Activitats econòmiques i fonts pròpies:
+			<input asp-for="ConsumAigua.ActivitatsFonts" class="form-control" value="@Model.ConsumAigua.ActivitatsFonts"/>
+			<span asp-validation-for="ConsumAigua.ActivitatsFonts" class="text-danger"></span>
+		</label>
+	</div>
+	<div class="form-group">
+		<label asp-for="ConsumAigua.Total">
+			Consum Total:
+			<input asp-for="ConsumAigua.Total" class="form-control" value="@Model.ConsumAigua.Total"/>
+			<span asp-validation-for="ConsumAigua.Total" class="text-danger"></span>
+		</label>
+	</div>
+	<div class="form-group">
+		<label asp-for="ConsumAigua.Consum">
+			Consum domèstic per càpita:
+			<input asp-for="ConsumAigua.Consum" class="form-control" value="@Model.ConsumAigua.Consum"/>
+			<span asp-validation-for="ConsumAigua.Consum" class="text-danger"></span>
+		</label>
+	</div>
+	<br />
+	<button type="submit" class="btn btn-primary" id="Enviar">Modificar</button>
+</form>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

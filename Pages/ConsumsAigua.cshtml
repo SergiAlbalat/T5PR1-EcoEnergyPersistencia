@@ -29,6 +29,18 @@
 					<td>@consum.ActivitatsFonts</td>
 					<td>@consum.Total</td>
 					<td>@consum.Consum</td>
+					<td>
+						<form method="post">
+							<button type="submit" asp-page-handler="edit" asp-route-id="@consum.Id">E</button>
+						</form>
+					</td>
+					<td>
+						<form method="post" asp-handler="Delete">
+							<button type="submit" asp-page-handler="delete" asp-route-id="@consum.Id">
+								X
+							</button>
+						</form>
+					</td>
 				</tr>
 			}
 		}

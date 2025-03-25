@@ -1,10 +1,7 @@
-using CsvHelper;
-using CsvHelper.Configuration;
 using EcoEnergyRazorProject.Data;
 using EcoEnergyRazorProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Globalization;
 
 namespace EcoEnergyRazorProject.Pages
 {
@@ -20,6 +17,21 @@ namespace EcoEnergyRazorProject.Pages
             {
                 HasRecords = true;
             }
+        }
+        public IActionResult OnPostDelete(int id)
+        {
+            using var context = new AplicationDbContext();
+            var consum = context.ConsumsAigua.Find(id);
+            if (consum != null)
+            {
+                context.ConsumsAigua.Remove(consum);
+                context.SaveChanges();
+            }
+            return RedirectToPage("ConsumsAigua");
+        }
+        public IActionResult OnPostEdit(int id)
+        {
+            return RedirectToPage("ModificarConsum", "Consum", new { Id = id });
         }
     }
 }

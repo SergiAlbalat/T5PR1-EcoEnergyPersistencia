@@ -26,7 +26,6 @@ namespace EcoEnergyRazorProject.Pages
         }
         public IActionResult OnPostDelete(int id)
         {
-            Console.WriteLine("Deleted");
             using var context = new AplicationDbContext();
             var simulacio = context.Simulacions.Find(id);
             if (simulacio != null)
