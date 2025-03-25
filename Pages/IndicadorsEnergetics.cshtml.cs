@@ -21,5 +21,20 @@ namespace EcoEnergyRazorProject.Pages
                 HasRecords = true;
             }
         }
+        public IActionResult OnPostDelete(int id)
+        {
+            using var context = new AplicationDbContext();
+            var indicador = context.IndicadorsEnergetics.Find(id);
+            if (indicador != null)
+            {
+                context.IndicadorsEnergetics.Remove(indicador);
+                context.SaveChanges();
+            }
+            return RedirectToPage("IndicadorsEnergetics");
+        }
+        public IActionResult OnPostEdit(int id)
+        {
+            return RedirectToPage("ModificarIndicador", "Indicador", new { Id = id });
+        }
     }
 }
