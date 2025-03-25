@@ -24,5 +24,21 @@ namespace EcoEnergyRazorProject.Pages
                 HasRecords = true;
             }
         }
+        public IActionResult OnPostDelete(int id)
+        {
+            Console.WriteLine("Deleted");
+            using var context = new AplicationDbContext();
+            var simulacio = context.Simulacions.Find(id);
+            if (simulacio != null)
+            {
+                context.Simulacions.Remove(simulacio);
+                context.SaveChanges();
+            }
+            return RedirectToPage("Simulacions");
+        }
+        public IActionResult OnPostEdit(int id)
+        {
+            return RedirectToPage("ModificarSimulacio", "Simulacio", new {Id = id});
+        }
     }
 }
