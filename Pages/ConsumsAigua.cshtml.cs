@@ -1,7 +1,9 @@
+using CsvHelper;
 using EcoEnergyRazorProject.Data;
 using EcoEnergyRazorProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Globalization;
 
 namespace EcoEnergyRazorProject.Pages
 {
@@ -32,6 +34,38 @@ namespace EcoEnergyRazorProject.Pages
         public IActionResult OnPostEdit(int id)
         {
             return RedirectToPage("ModificarConsum", "Consum", new { Id = id });
+        }
+
+        public IActionResult OnPostSeed()
+        {
+            using var context = new AplicationDbContext();
+            var reader = new StreamReader("wwwroot/Files/consum_aigua_cat_per_comarques.csv");
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            var records = csv.GetRecords<ConsumAiguaSeed>().ToList();
+            foreach (var r in records) {
+                ConsumAigua consum = new ConsumAigua
+                {
+                    Any = r.Any,
+                    CodiComarca = r.CodiComarca,
+                    Comarca = r.Comarca,
+                    Poblacio = r.Poblacio,
+                    DomesticXarxa = r.DomesticXarxa,
+                    ActivitatsFonts = r.ActivitatsFonts,
+                    Total = r.Total,
+                    Consum = r.Consum
+                };
+                context.ConsumsAigua.Add(consum);
+                context.SaveChanges();
+            }
+            return RedirectToPage("ConsumsAigua");
+        }
+        public IActionResult OnPostErase()
+        {
+            using var context = new AplicationDbContext();
+            var registres = context.ConsumsAigua.ToList();
+            context.ConsumsAigua.RemoveRange(registres);
+            context.SaveChanges();
+            return RedirectToPage("ConsumsAigua");
         }
     }
 }

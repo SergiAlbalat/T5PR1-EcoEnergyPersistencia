@@ -51,4 +51,10 @@
 	</tbody>
 </table>
 <p>Numero de registres: @Model.ConsumsAigua.Count</p>
-<a asp-page="/InsertarConsumAigua" class="btn btn-primary">Afegir Consum d'Aigua</a>
+<form method="post">
+	<div class="row row-cols-4">
+		<a asp-page="/InsertarConsumAigua" class="btn btn-primary m-1">Afegir Consum d'Aigua</a>
+		<button type="submit" asp-page-handler="Seed" class="btn btn-primary m-1">Afegir Consums per Defecte</button>
+		<button type="submit" asp-page-handler="Erase" class="btn btn-primary m-1">Borrar tots els registres</button>
+	</div>
+</form>
