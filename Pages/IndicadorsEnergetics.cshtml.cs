@@ -36,5 +36,34 @@ namespace EcoEnergyRazorProject.Pages
         {
             return RedirectToPage("ModificarIndicador", "Indicador", new { Id = id });
         }
+        public IActionResult OnPostSeed()
+        {
+            using var context = new AplicationDbContext();
+            var reader = new StreamReader("wwwroot/Files/indicadors_energetics_cat.csv");
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            var records = csv.GetRecords<IndicadorEnergeticSeed>().ToList();
+            foreach (var r in records)
+            {
+                IndicadorEnergetic indicador = new IndicadorEnergetic
+                {
+                    Data = r.Data,
+                    CDEEBC_ProdNeta = r.CDEEBC_ProdNeta,
+                    CCAC_GasolinaAuto = r.CCAC_GasolinaAuto,
+                    CDEEBC_DemandaElectr = r.CDEEBC_DemandaElectr,
+                    CDEEBC_ProdDisp = r.CDEEBC_ProdDisp
+                };
+                context.IndicadorsEnergetics.Add(indicador);
+                context.SaveChanges();
+            }
+            return RedirectToPage("IndicadorsEnergetics");
+        }
+        public IActionResult OnPostErase()
+        {
+            using var context = new AplicationDbContext();
+            var registres = context.IndicadorsEnergetics.ToList();
+            context.IndicadorsEnergetics.RemoveRange(registres);
+            context.SaveChanges(); 
+            return RedirectToPage("IndicadorsEnergetics");
+        }
     }
 }

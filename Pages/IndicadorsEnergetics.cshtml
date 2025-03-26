@@ -115,4 +115,8 @@
 	</tbody>
 </table>
 <p>Numero de registres: @Model.IndicadorsEnergetics.Count</p>
-<a asp-page="/InsertarIndicadorEnergetic" class="btn btn-primary">Afegir Indicador Energetic</a>
+<form method="post">
+    <a asp-page="/InsertarIndicadorEnergetic" class="btn btn-primary">Afegir Indicador Energetic</a>
+    <button type="submit" asp-page-handler="Seed" class="btn btn-primary m-1">Afegir Indicadors per Defecte</button>
+    <button type="submit" asp-page-handler="Erase" class="btn btn-primary m-1">Borrar tots els registres</button>
+</form>
