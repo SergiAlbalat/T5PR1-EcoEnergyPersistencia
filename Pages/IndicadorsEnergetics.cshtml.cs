@@ -62,7 +62,7 @@ namespace EcoEnergyRazorProject.Pages
             using var context = new AplicationDbContext();
             var registres = context.IndicadorsEnergetics.ToList();
             context.IndicadorsEnergetics.RemoveRange(registres);
-            context.SaveChanges();
+            context.SaveChanges(); 
             return RedirectToPage("IndicadorsEnergetics");
         }
     }
