@@ -41,7 +41,7 @@ namespace EcoEnergyRazorProject.Pages
             using var context = new AplicationDbContext();
             var reader = new StreamReader("wwwroot/Files/consum_aigua_cat_per_comarques.csv");
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-            var records = csv.GetRecords<ConsumAiguaSeed>().ToList();
+            var records = csv.GetRecords<ConsumAiguaDTO>().ToList();
             foreach (var r in records) {
                 ConsumAigua consum = new ConsumAigua
                 {

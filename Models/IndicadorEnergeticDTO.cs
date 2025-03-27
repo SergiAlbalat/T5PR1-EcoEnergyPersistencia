@@ -2,7 +2,7 @@
 
 namespace EcoEnergyRazorProject.Models
 {
-    public class IndicadorEnergeticSeed
+    public class IndicadorEnergeticDTO
     {
         public DateTime Data { get; set; }
         public double PBEE_Hidroelectr { get; set; }
