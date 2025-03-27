@@ -2,7 +2,7 @@
 
 namespace EcoEnergyRazorProject.Models
 {
-    public class ConsumAiguaSeed
+    public class ConsumAiguaDTO
     {
         public int Any { get; set; }
         public int CodiComarca { get; set; }

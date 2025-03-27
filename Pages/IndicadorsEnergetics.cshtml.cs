@@ -41,7 +41,7 @@ namespace EcoEnergyRazorProject.Pages
             using var context = new AplicationDbContext();
             var reader = new StreamReader("wwwroot/Files/indicadors_energetics_cat.csv");
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-            var records = csv.GetRecords<IndicadorEnergeticSeed>().ToList();
+            var records = csv.GetRecords<IndicadorEnergeticDTO>().ToList();
             foreach (var r in records)
             {
                 IndicadorEnergetic indicador = new IndicadorEnergetic
